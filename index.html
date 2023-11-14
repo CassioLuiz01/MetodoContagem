@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Cálculos Combinatórios</title>
+  
+</head>
+<body>
+
+  <h2>Métodos de Contagem</h2>
+
+  <label for="tipo">O que desejar calcular ?</label>
+  <select id="tipo">
+    <option value="permutacaoSemRepeticao">Permutação Sem Repetição</option>
+    <option value="arranjoSemRepeticao">Arranjo Sem Repetição</option>
+    <option value="combinacaoSemRepeticao">Combinação Sem Repetição</option>
+    <option value="permutacaoComRepeticao">Permutação Com Repetição</option>
+    <option value="arranjoComRepeticao">Arranjo Com Repetição</option>
+    <option value="combinacaoComRepeticao">Combinação Com Repetição</option>
+  </select>
+
+  <label for="n">Digite o valor de n:</label>
+  <input type="text" id="n" placeholder="Aqui ">
+
+  <label for="r">Digite o valor de r:</label>
+  <input type="text" id="r" placeholder="Aqui">
+
+  <button onclick="calcular()">Calcular</button>
+
+  <p id="resultado"></p>
+
+ <script> function calcular() {
+    var tipo = document.getElementById('tipo').value;
+    var n = parseInt(document.getElementById('n').value);
+    var r = parseInt(document.getElementById('r').value);
+
+    switch (tipo) {
+      case 'permutacaoSemRepeticao':
+        calcularPermutacaoSemRepeticao(n, r);
+        break;
+      case 'arranjoSemRepeticao':
+        calcularArranjoSemRepeticao(n, r);
+        break;
+      case 'combinacaoSemRepeticao':
+        calcularCombinacaoSemRepeticao(n, r);
+        break;
+      case 'permutacaoComRepeticao':
+        calcularPermutacaoComRepeticao(n, r);
+        break;
+      case 'arranjoComRepeticao':
+        calcularArranjoComRepeticao(n, r);
+        break;
+      case 'combinacaoComRepeticao':
+        calcularCombinacaoComRepeticao(n, r);
+        break;
+      default:
+        alert('Escolha um tipo válido.');
+    }
+  }
+
+  function calcularPermutacaoSemRepeticao(n, r) {
+    var resultado = 1;
+    for (var i = n; i > n - r; i--) {
+      resultado *= i;
+    }
+    exibirResultado(resultado);
+  }
+
+  function calcularArranjoSemRepeticao(n, r) {
+    var resultado = 1;
+    for (var i = n; i > n - r; i--) {
+      resultado *= i;
+    }
+    exibirResultado(resultado);
+  }
+
+  function calcularCombinacaoSemRepeticao(n, r) {
+    var resultado = 1;
+    for (var i = n; i > n - r; i--) {
+      resultado *= i;
+    }
+    resultado /= fatorial(r);
+    exibirResultado(resultado);
+  }
+
+  function calcularPermutacaoComRepeticao(n, r) {
+    var resultado = Math.pow(n, r);
+    exibirResultado(resultado);
+  }
+
+  function calcularArranjoComRepeticao(n, r) {
+    var resultado = Math.pow(n, r);
+    exibirResultado(resultado);
+  }
+
+  function calcularCombinacaoComRepeticao(n, r) {
+    var resultado = fatorial(n + r - 1) / (fatorial(r) * fatorial(n - 1));
+    exibirResultado(resultado);
+  }
+
+  function fatorial(num) {
+    var result = 1;
+    for (var i = 1; i <= num; i++) {
+      result *= i;
+    }
+    return result;
+  }
+
+  function exibirResultado(resultado) {
+    document.getElementById('resultado').innerHTML = 'Resultado: ' + resultado;
+  }</script>
+</body>
+</html>
